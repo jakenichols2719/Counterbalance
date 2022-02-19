@@ -7,10 +7,24 @@ this will apply to everything
 }
 */
 
+/* Applies to all content on the page */
 .Main {
-  background-color: AliceBlue
+  background-color: AliceBlue;
 }
 
+/* Applies to every div.Section */
+.Section {
+  margin: 10px 10px 10px 10px;
+  border-style: solid;
+}
+
+/* Applies to every div.Section.Type1 */
 .Section.Type1 {
-  
+  border-color: Red;
+}
+
+/* Applies to every div.Section.Type2 */
+
+.Section.Type2 {
+  border-color: Blue;
 }
