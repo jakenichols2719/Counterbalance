@@ -34,6 +34,10 @@ app.get("/", (req, res) => {
     res.render("template-page", {title: "Home"});
 });
 
+
+/**
+ * Functions
+*/
 /**
  * Server Activation
 */
@@ -41,7 +45,6 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log("Hello World");
     
-    const test = "A reminder for eastern Ukraine after attacks apparently by Russia-backed troops hit a school & residential areas. Attacks that indiscriminately strike civilian objects violate international humanitarian law and if committed willfully amount to war crimes."
-    //console.log(analysis.DumbKeywordAnalysis(test));
-
+    //const results = await run_api_call('1495138894987157504');
+    //console.log(results);
 });

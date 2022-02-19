@@ -1,21 +1,21 @@
 const { toNamespacedPath } = require("path");
 
 // 100 most common english words, plus additions as problematic words are found
-const common = ['the','of','to','and','a','in','is','it','you','that','he','was','for','on','are','with',
+const common = ['the','of','to','and','a','in','is','it','its',"it's",'you','that','he','was','for','on','are','with',
 'as','I','his','they','be','at','one','have','this','from','or','had','by','not','word','but','what','some',
 'we','can','out','other','were','all','there','when','up','use','your','how','said','an','each','she',
 'which','do','their','time','if','will','way','about','many','then','them','write','would','like','so',
 'these','her','long','make','thing','see','him','two','has','look','more','day','could','go','come','did',
 'number','sound','no','most','people','my','over','know','water','than','call','first','who','may','down',
-'side','been','now','find','any'];
+'side','been','now','find','any','us'];
+const filter = ['fuck','shit','yes','amp','un','really','just'];
 
 const unwanted = ['@', 'http', 'www', 't.co', 'bit.ly', '.com', '.org', '.net']
 
 module.exports = {
     // Get the word with highest occurence, tiebreaking with the longest words
-    DumbKeywordAnalysis : function DumbKeywordAnalysis(sentence) {
-        const sani_sentence = Sanitize(sentence);
-        console.log(sani_sentence);
+    DumbKeywordAnalysis : function DumbKeywordAnalysis(used_keywords, sentence) {
+        const sani_sentence = Sanitize(sentence).filter(word => !used_keywords.includes(word));
         const counts = tf(sani_sentence);
         const lengths = tlen(sani_sentence);
         var max_tf = 0
@@ -28,15 +28,17 @@ module.exports = {
         });
         return max_tf_word;
     },
-    SmartKeywordAnalysis : function SmartKeywordAnalysis(src_keywords, sentence, others) {
-        const sani_sentence = Sanitize(sentence).filter(word => !src_keywords.includes(word));
+    SmartKeywordAnalysis : function SmartKeywordAnalysis(used_keywords, sentence, others) {
+        const sani_sentence = Sanitize(sentence).filter(word => !used_keywords.includes(word));
         const sani_others = others.map(s => Sanitize(s));
         const s_tf = tf(sani_sentence);
         const s_idf = idf(sani_sentence, sani_others);
         var max_tf_idf = 0;
         var max_tf_idf_word;
         sani_sentence.forEach(word => {
+            
             var ratio = s_tf[word] * s_idf[word];
+            //console.log(word + ", " + ratio);
             if(ratio > max_tf_idf) {
                 max_tf_idf = ratio;
                 max_tf_idf_word = word;
@@ -64,7 +66,7 @@ function RemovePunctuation(sentence_arr) {
     //sentence_out = sentence_arr.map(word => word.replace(/[.,\/#!$%\^&\*;:{}=—\-_`~()]/g, " "));
     sentence_arr.forEach(word => {
         var spacing = word.replace(/[—\-]/g, " ");
-        var nonspacing = spacing.replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g, "");
+        var nonspacing = spacing.replace(/[.,\/#\?!$%\^&\*;:{}=_`~()]/g, "");
         var depossesed = nonspacing.replace(/’./g, "").replace(/\s{2,}/g," ");
         //var temp = word.replace(/[.,\/#!$%\^&\*;:{}=—\-_`~()]/g, "").replace(/\s{2,}/g," ");
         Tokenize(depossesed).forEach(new_word => { sentence_out.push(new_word); });
@@ -75,7 +77,7 @@ function RemovePunctuation(sentence_arr) {
 // Remove common words from a list of words
 function RemoveCommon(sentence_arr) {
     var sentence_out = []
-    sentence_out = sentence_arr.filter(word => !common.includes(word));
+    sentence_out = sentence_arr.filter(word => !common.includes(word.toLowerCase()) && !filter.includes(word.toLowerCase()));
     return sentence_out;
 }
 
@@ -110,10 +112,12 @@ function tf(sentence_arr) {
 function idf(sentence_arr, other_sentence_arrs) {
     var counts = {}
     var cur = 1;
+    const other_ct = other_sentence_arrs.length;
+    sentence_arr.forEach(word => counts[word] = Math.log((other_ct+1)/1.0));
     other_sentence_arrs.forEach(other_sentence => {
         sentence_arr.forEach(word => {
             if(other_sentence.includes(word)) {
-                counts[word] = Math.log(cur+1);
+                counts[word] = Math.log(11.0/cur+1);
             }
         });
         cur++;
