@@ -7,6 +7,7 @@
 const express = require("express");
 const parse = require("body-parser");
 const path = require("path");
+const api = require("./api");
 /**
  * App Variables
 */
@@ -31,7 +32,14 @@ require("./api.js");
 */
 
 app.get("/", (req, res) => {
-    res.render("template-page", {title: "Home"});
+    if(req.query.tid != null) {
+        api.run_api_call(req.query.tid).then(result => {
+            console.log(result);
+            res.render("template-page", {title: "Home", results: result});
+        });
+    } else {
+        res.render("template-page", {title: "Home", results: []});
+    }
 });
 
 

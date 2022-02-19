@@ -87,10 +87,11 @@ module.exports = {
         var results = null;
         var results = await find_gray([keyword0,keyword2,keyword3/*,keyword3*/]);
         if(results != null ){
-            console.log(results);
+            //console.log(results);
         } else {
             console.log("Tweet to specialized, can't find enough results to analyze.");
         }
+        return results;
     }    
 }
 

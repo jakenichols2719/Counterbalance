@@ -1,15 +1,12 @@
-
-/*
-Remove this text and the brackets to use the #root id;
-this will apply to everything
-#root {
-
+body {
+  background-color: #4B5175;
 }
-*/
 
 /* Applies to all content on the page */
 .Main {
-  background-color: AliceBlue;
+  background-color: #4B5175;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 /* Applies to every div.Section */
@@ -20,11 +17,33 @@ this will apply to everything
 
 /* Applies to every div.Section.Type1 */
 .Section.Type1 {
-  border-color: Red;
+  border-color: #4B5175;
+  font-family: Book Antiqua, Palatino, Palatino Linotype, Palatino LT STD, Georgia, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 44px;
+  line-height: 47px;
+ 
+  color: #FFE7BF;
 }
 
 /* Applies to every div.Section.Type2 */
-
 .Section.Type2 {
-  border-color: Blue;
+  /* border-color: Blue; */
+  border-color: #4B5175;
+  font-family: Book Antiqua, Palatino, Palatino Linotype, Palatino LT STD, Georgia, serif;
+  color: #FFE7BF;
+}
+
+
+/* Applies to every div.Section.Type1 */
+/* this is where we insert the project content */
+.Section.Type3{
+  border-color: #4B5175;
+  font-family: Book Antiqua, Palatino, Palatino Linotype, Palatino LT STD, Georgia, serif;
+  color: #FFE7BF;
+}
+
+h1 {
+  text-shadow: 0px 4px 5px rgba(0, 0, 0, 0.6);
 }
