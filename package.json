@@ -1,0 +1,32 @@
+{
+  "name": "counterbalance",
+  "version": "1.0.0",
+  "description": "balance negative public sentiment on Twitter with positive information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakenichols2719/Counterbalance.git"
+  },
+  "keywords": [
+    "twitter",
+    "webapp",
+    "hackathon"
+  ],
+  "author": "Jake Nichols, Julian Sava",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jakenichols2719/Counterbalance/issues"
+  },
+  "homepage": "https://github.com/jakenichols2719/Counterbalance#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "pug": "^3.0.2"
+  }
+}
