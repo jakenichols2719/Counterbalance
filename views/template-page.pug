@@ -5,10 +5,26 @@ block page-content
     h1.Header
     div.Section.Type1
       div.Title
-        h1 Page Title
-        span This text is inline.
+        h1 The New Cycle
+        //h6 subtitle
+        //span This text is inline.
       div.Body
-        p This is a block paragraph.
+        p Nuance in a news cycle of clickbait and outrage
+    
     div.Section.Type2
+      h2 Our Goal
+      p Opinions, especially on Twitter, are known for their strongly opinionated, outraged, and often clickbait snapshots of a situation. Partially due to the design and character limit, the platform has a public reputation for lacking nuanced and level-headed conversation and has been shown to contribute to anxiety, polarization, and vitriol among its users. 
+      p But this isn’t all that the platform is, and it shouldn’t be the front page of what is visible.
+      p Our project is designed to shift discourse on the internet in a more nuanced, positive\direction. We input a tweet with potentially strong sentiment and search for tweets on similar topics with a more positive and/or nuanced approach.
+      p Our goal is to help facilitate thoughtful and reasoned digital discussions which can then help people collectively search for solutions to global issues rather than limiting their scope of discovery. 
+      h2 How To Use
+      p Input a link to a tweet below and click submit. We use a combination of the Twitter API, a custom keyword finder, and the Twinwords Sentiment Analysis API to find related tweets we think you might enjoy.
+
+    div.Section.Type3
+      div.Title
+        form(id="tweet_submit_form")
+          label(for="tid") Tweet ID:
+          input(type="text" id="tid" name="tid")
+          input(type="submit" value="Submit")
       div.Body
-        p This is a block paragraph in a different section.
+        p #{results}
