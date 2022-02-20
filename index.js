@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
     if(req.query.tid != null) {
         api.run_api_call(req.query.tid).then(result => {
             console.log(result);
-            res.render("template-page", {title: "Home", results: JSON.stringify(result)});
+            res.render("template-page", {title: "Home", results: result});
         });
     } else {
         res.render("template-page", {title: "Home", results: []});
