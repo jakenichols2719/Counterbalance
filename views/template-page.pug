@@ -28,5 +28,5 @@ block page-content
           input(type="submit" value="Submit")
       div.Body
         for result in results
-          span=result
+          a(href=result)= result
           br
