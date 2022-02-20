@@ -66,7 +66,7 @@ function RemovePunctuation(sentence_arr) {
     //sentence_out = sentence_arr.map(word => word.replace(/[.,\/#!$%\^&\*;:{}=—\-_`~()]/g, " "));
     sentence_arr.forEach(word => {
         var spacing = word.replace(/[—\-]/g, " ");
-        var nonspacing = spacing.replace(/[.,\/#\?!$%\^&\*;:{}=_`~()]/g, "");
+        var nonspacing = spacing.replace(/[.,\/#\?!$%\^&\*;:“”"{}=_`~()]/g, "");
         var depossesed = nonspacing.replace(/’./g, "").replace(/\s{2,}/g," ");
         //var temp = word.replace(/[.,\/#!$%\^&\*;:{}=—\-_`~()]/g, "").replace(/\s{2,}/g," ");
         Tokenize(depossesed).forEach(new_word => { sentence_out.push(new_word); });
