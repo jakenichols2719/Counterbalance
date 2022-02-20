@@ -27,4 +27,6 @@ block page-content
           input(type="text" id="tid" name="tid")
           input(type="submit" value="Submit")
       div.Body
-        p #{results}
+        for result in results
+          span=result
+          br
