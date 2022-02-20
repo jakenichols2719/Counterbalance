@@ -42,6 +42,18 @@ app.get("/", (req, res) => {
     }
 });
 
+app.post("/api/search", (req, res) => {
+    if(req.query.tid != null) {
+        output = []
+        api.run_api_call(req.query.tid).then(result => {
+            output = JSON.stringify(result);
+        });
+        res.end(output);
+    } else {
+        res.end("No tid included in POST");
+    }
+})
+
 
 /**
  * Functions

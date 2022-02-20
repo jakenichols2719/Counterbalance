@@ -5,7 +5,7 @@ block page-content
     h1.Header
     div.Section.Type1
       div.Title
-        h1 The New Cycle
+        h1 Gray
         //h6 subtitle
         //span This text is inline.
       div.Body
@@ -27,4 +27,6 @@ block page-content
           input(type="text" id="tid" name="tid")
           input(type="submit" value="Submit")
       div.Body
-        p #{results}
+        for result in results
+          a(href=result)= result
+          br

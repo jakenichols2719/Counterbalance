@@ -193,7 +193,7 @@ async function find_gray(keywords) {
         var ratio = analysis.ratio;
         var gray = score >= .10 && score <= .15 && ratio >= .15;
         if(gray) {
-            analysis_output.push('twitter.com/anyuser/status/'+ID);
+            analysis_output.push('https://www.twitter.com/anyuser/status/'+ID);
         }
     }
     return analysis_output;
